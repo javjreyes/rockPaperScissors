@@ -22,27 +22,29 @@ class Game{
     winnerIs(com, player){
         let inputs=[com,player];
         if(com==null||player==null){
-            console.log(com, player);
             return "invalid";
         }
         else if(com===player){
             return "draw";
         }
-        //Fix Me
         else{
-            switch(inputs){
-                case ["rock","paper"]:
-                    return "player";
-                case ["rock","scissors"]:
-                    return "com";
-                case ["paper","rock"]:
-                    return "com";
-                case ["paper","scissors"]:
-                    return "player";
-                case["scissors","rock"]:
-                    return "player";
-                case["scissors","paper"]:
-                    return "com";
+            if(com=="rock" && player=="paper"){
+                return "player"
+            }
+            else if(com=="rock" && player=="scissors"){
+                return "com"
+            }
+            else if(com=="paper" && player=="rock"){
+                return "com"
+            }
+            else if(com=="paper" && player=="scissors"){
+                return "player"
+            }
+            else if(com=="scissors" && player=="rock"){
+                return "player"
+            }
+            else if(com=="scissors" && player=="paper"){
+                return "com"
             }
         }
 
@@ -52,7 +54,6 @@ class Game{
     //play round
     playRound(){
         let comChoice=this.getComChoice();
-        console.log(comChoice);
         let playerChoice="rock";
         let winner=this.winnerIs(comChoice,playerChoice);
         console.log("Winner is",winner);
@@ -82,7 +83,7 @@ class Game{
 function init(){
     let game=new Game();
     game.playRound();
-    //game.tests();
+    game.tests();
 }
 //call init for testing
 init();

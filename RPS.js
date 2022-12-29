@@ -95,8 +95,12 @@ class Game{
 
 }
 
-
 //document.onload=init;
+
+var currentGame;
+function newGame(){
+    currentGame=new Game();
+}
 
 function init(){
     let game=new Game();

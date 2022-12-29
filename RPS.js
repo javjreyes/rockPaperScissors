@@ -60,6 +60,23 @@ class Game{
         return winner;
     }
 
+    //play game of 5 rounds
+    playGame(){
+        console.log("Let's play a Rock, Paper, Scissors! Best 3 out of 5");
+        let overallWinner;
+        let com=0; let player=0;
+        while(com<3 && player<3){
+            let winner=this.playRound();
+            if(winner=="com"){com++}
+            else if(winner=="player"){player++}
+        }
+
+        if(com<player){overallWinner="player"}
+        else{overallWinner="computer"}
+        console.log("Overall winner is the "+overallWinner+".");
+
+    }
+
     //prints function outputs to console for testing
     tests(){
         //test get com choice
@@ -75,6 +92,7 @@ class Game{
         console.log("playround() returns:", this.playRound());
     }
 
+
 }
 
 
@@ -82,8 +100,8 @@ class Game{
 
 function init(){
     let game=new Game();
-    game.playRound();
-    game.tests();
+    game.playGame();
+    //game.tests();
 }
 //call init for testing
 init();

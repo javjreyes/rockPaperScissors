@@ -1,5 +1,6 @@
 class Game{
     constructor(){
+        this.gameStatus="active";
         //initialize game scores at the start of a new game
         this.playerScore=0;
         this.comScore=0;
@@ -20,11 +21,10 @@ class Game{
 
     //determine round winner
     winnerIs(com, player){
-        let inputs=[com,player];
         if(com==null||player==null){
             return "invalid";
         }
-        else if(com===player){
+        else if(com==player){
             return "draw";
         }
         else{
@@ -32,10 +32,10 @@ class Game{
                 return "player"
             }
             else if(com=="rock" && player=="scissors"){
-                return "com"
+                return "computer"
             }
             else if(com=="paper" && player=="rock"){
-                return "com"
+                return "computer"
             }
             else if(com=="paper" && player=="scissors"){
                 return "player"
@@ -44,7 +44,7 @@ class Game{
                 return "player"
             }
             else if(com=="scissors" && player=="paper"){
-                return "com"
+                return "computer"
             }
         }
 
@@ -53,25 +53,38 @@ class Game{
 
     //play round
     playRound(playerChoice){
-        console.log("player choice:",playerChoice);
-        let comChoice=this.getComChoice();
-        let winner=this.winnerIs(comChoice,playerChoice);
-        if(winner!=null||winner!="draw"){
-            document.getElementById("roundWinner").innerText="Round winner is "+winner;
-            this.updateGame(winner);
+        if(this.gameStatus!="over"){
+            console.log("player choice:",playerChoice);
+            let comChoice=this.getComChoice();
+            console.log("computer choice:",comChoice)
+            let winner=this.winnerIs(comChoice,playerChoice);
+            if(winner!=null&&winner!="draw"){
+                document.getElementById("roundWinner").innerText="Round winner is "+winner;
+                console.log("round winner is: ",winner);
+                this.updateGame(winner);
+            }
+            else{
+                console.log("round is a draw");
+                document.getElementById("roundWinner").innerText="Draw!";
+            }
         }
         else{
-            document.getElementById("roundWinner").innerText="Draw!";
+            console.log("Press new game to play again");
         }
     }
 
     updateGame(winner){
             //update individuals scores
-            if(winner=="com"){this.comScore++}
+            if(winner=="computer"){this.comScore++}
             else if(winner=="player"){this.playerScore++}
 
             //if com or player scores 3 points, end game
             if(this.playerScore==3||this.comScore==3){this.gameover(winner)}
+    }
+
+    //change games status when game is complete
+    gameover(){
+        this.gameStatus="over";
     }
 
     //prints function outputs to console for testing

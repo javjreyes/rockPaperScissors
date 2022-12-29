@@ -57,6 +57,10 @@ class Game{
             console.log("player choice:",playerChoice);
             let comChoice=this.getComChoice();
             console.log("computer choice:",comChoice)
+
+            document.getElementById("playerChoice").innerText=playerChoice;
+            document.getElementById("comChoice").innerText=comChoice;
+
             let winner=this.winnerIs(comChoice,playerChoice);
             if(winner!=null&&winner!="draw"){
                 document.getElementById("roundWinner").innerText="Round winner is "+winner;
@@ -70,6 +74,7 @@ class Game{
         }
         else{
             console.log("Press new game to play again");
+            document.getElementById("roundWinner").innerText="Select 'New Game' to play again"
         }
     }
 
@@ -83,8 +88,9 @@ class Game{
     }
 
     //change games status when game is complete
-    gameover(){
+    gameover(winner){
         this.gameStatus="over";
+        document.getElementById('gameStatus').innerText="Game Over!\nThe "+winner+" wins!";
     }
 
     //prints function outputs to console for testing
@@ -110,6 +116,8 @@ class Game{
 var currentGame;
 function newGame(){
     currentGame=new Game();
+    document.getElementById('gameStatus').innerText="";
+    document.getElementById("roundWinner").innerText="";
 }
 
 document.onload=init();

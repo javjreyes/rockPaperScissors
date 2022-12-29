@@ -52,15 +52,29 @@ class Game{
     }
 
     //play round
-    playRound(){
+    playRound(playerChoice){
         let comChoice=this.getComChoice();
-        let playerChoice="rock";
         let winner=this.winnerIs(comChoice,playerChoice);
-        console.log("Winner is",winner);
-        return winner;
+        if(winner!=null||winner!="draw"){
+            document.getElementById("roundWinner").innerText="Round winner is "+winner;
+            this.updateGame(winner);
+        }
+        else{
+            document.getElementById("roundWinner").innerText="Draw!";
+        }
+    }
+
+    updateGame(winner){
+            //update individuals scores
+            if(winner=="com"){this.comScore++}
+            else if(winner=="player"){this.playerScore++}
+
+            //if com or player scores 3 points, end game
+            if(this.playerScore==3||this.comScore==3){this.gameover(winner)}
     }
 
     //play game of 5 rounds
+    /*
     playGame(){
         console.log("Let's play a Rock, Paper, Scissors! Best 3 out of 5");
         let overallWinner;
@@ -76,6 +90,7 @@ class Game{
         console.log("Overall winner is the "+overallWinner+".");
 
     }
+    */
 
     //prints function outputs to console for testing
     tests(){

@@ -19,14 +19,16 @@ class Game{
     }
 
     //determine round winner
-    winner(com, player){
+    winnerIs(com, player){
         let inputs=[com,player];
         if(com==null||player==null){
+            console.log(com, player);
             return "invalid";
         }
         else if(com===player){
             return "draw";
         }
+        //Fix Me
         else{
             switch(inputs){
                 case ["rock","paper"]:
@@ -49,18 +51,27 @@ class Game{
 
     //play round
     playRound(){
-
+        let comChoice=this.getComChoice();
+        console.log(comChoice);
+        let playerChoice="rock";
+        let winner=this.winnerIs(comChoice,playerChoice);
+        console.log("Winner is",winner);
+        return winner;
     }
 
     //prints function outputs to console for testing
     tests(){
         //test get com choice
-        console.log("getComChoice returns:",this.getComChoice())
+        console.log("getComChoice() returns:",this.getComChoice())
+
 
         //test winner
-        console.log("winner(null, rock) returns", this.winner(null,"rock"));
-        console.log("winner(com==player) rerturns", this.winner("rock","rock"));
-        console.log("winner(rock, paper) returns:",this.winner("rock","paper"));
+        console.log("winnerIs(null, rock) returns:", this.winnerIs(null,"rock"));
+        console.log("winnerIs(com==player) rerturns:", this.winnerIs("rock","rock"));
+        console.log("winnerIs(rock, paper) returns:",this.winnerIs("rock","paper"));
+
+        //test play round
+        console.log("playround() returns:", this.playRound());
     }
 
 }
@@ -70,7 +81,8 @@ class Game{
 
 function init(){
     let game=new Game();
-    game.tests();
+    game.playRound();
+    //game.tests();
 }
 //call init for testing
 init();

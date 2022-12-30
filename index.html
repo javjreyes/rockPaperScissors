@@ -4,41 +4,45 @@
         <title>Rock, Paper, Scissors</title>
         <link rel="stylesheet" href="bootstrap.min.css">
         <script src="RPS.js"></script>
-        <style>body{background-color: black;}</style>
+        <style>.gameBody{background-color: black;}</style>
     </head>
     <body>
-        <div class="container">
-            <div class="row justify-content-center my-3">
-                <div class="text-center">
-                    <button onclick="newGame()">New Game</button>
-                </div>
-            </div>
-            <div class="row justify-content-center my-5">
-                <div class="text-center">
-                    <button onclick="currentGame.playRound('rock')">Rock</button>
-                    <button onclick="currentGame.playRound('paper')">Paper</button>
-                    <button onclick="currentGame.playRound('scissors')">Scissors</button>
-                </div>
-            </div>
-            <div class="row text-center">
-                <div class="col-5">Player</div>
-                <div class="col-2">VS</div>
-                <div class="col-5">Computer</div>
-            </div>
+        <div class="container text-center">
+            <div class="gameBody col-lg-7 col-md-10 col-12 mx-auto">
 
-            <div class="row text-center">
-                <div class="col-5" id="playerChoice"></div>
-                <div class="col-2"></div>
-                <div class="col-5" id="comChoice"></div>
-            </div>
-            
-            <div class="row">
-                <div class="text-center" id="roundWinner"></div>
-            </div>
-            <div class="row">
-                <div class="text-center">
-                    <h2 id="gameStatus"></h1>
+                <div class="row justify-content-center my-3 py-3">
+                    <div class="text-center">
+                        <button onclick="newGame()">New Game</button>
+                    </div>
                 </div>
+                <div class="row justify-content-center my-5">
+                    <div class="text-center">
+                        <button class="mx-1" onclick="currentGame.playRound('rock')">Rock</button>
+                        <button class="mx-1" onclick="currentGame.playRound('paper')">Paper</button>
+                        <button class="mx-1" onclick="currentGame.playRound('scissors')">Scissors</button>
+                    </div>
+                </div>
+                <div class="row text-center">
+                    <div class="col-5"><h3><b>Player</b></h3></div>
+                    <div class="col-2"></div>
+                    <div class="col-5"><h3><b>Computer</b></h3></div>
+                </div>
+
+                <div class="row d-flex align-items-center" style="height: 200px;">
+                    <div class="col-5" id="playerChoice"></div>
+                    <div class="col-2 h-25 d-flex align-items-center justify-content-center"><h4><b>VS</b></h4></div>
+                    <div class="col-5" id="comChoice"></div>
+                </div>
+                
+                <div class="row">
+                    <div class="text-center" id="roundWinner"></div>
+                </div>
+                <div class="row">
+                    <div class="text-center">
+                        <h2 id="gameStatus my-2"></h1>
+                    </div>
+                </div>
+        
             </div>
         </div>
     </body>
